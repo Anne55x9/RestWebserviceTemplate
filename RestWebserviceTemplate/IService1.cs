@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -12,6 +13,44 @@ namespace RestWebserviceTemplate
     [ServiceContract]
     public interface IService1
     {
+        /// <summary>
+        /// Henter alle elemeneter i liste.
+        /// </summary>
+        /// <returns></returns>
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, 
+            UriTemplate = "XXes")]
+
+        IList<ClassName> GetXXes();
+
+        /// <summary>
+        /// Henter et elemt i en liste udfra Id som string.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "XX/{id}")]
+        ClassName GetXXById(string id);
+
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "XXes")]
+        ClassName AddXX(ClassName newClassNameElement);
+
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE", ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "XXes/{id}")]
+        ClassName DeleteXX(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "XXes/{id}")]
+        ClassName UpdateXX(string id, ClassName updateElement);
 
         [OperationContract]
         string GetData(int value);
