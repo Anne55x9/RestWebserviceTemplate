@@ -4,7 +4,11 @@ using System.Linq;
 using System.Web;
 
 namespace RestWebserviceTemplate
-{
+{/// <summary>
+/// Datacontract på klassen er ikke nødvendig for funktionelt program. Lader til at være nødvendigt 
+/// hvis klassen er i interfaset med attribbutter i interfaset som DATAMEMBERS.
+/// </summary>
+    //[DataContract]
     public class ClassName
     {
         private int id;
@@ -23,6 +27,7 @@ namespace RestWebserviceTemplate
         /// <summary>
         /// Lav autogeneret id.
         /// </summary>
+        //[DataMember]
         public int Id
         {
             get => id;
